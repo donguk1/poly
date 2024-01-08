@@ -145,10 +145,14 @@ public class NoticeJoinService implements INoticeJoinService {
         List<NoticeDTO> nList = new ArrayList<>();
 
         rList.forEach(e -> {
-                    NoticeDTO rDTO = NoticeDTO.builder().
-                            noticeSeq(e.getNoticeSeq()).title(e.getTitle()).noticeYn(e.getNoticeYn())
-                            .readCnt(e.getReadCnt()).userId(e.getUserId())
-                            .userName(e.getUserInfo().getUserName()).build(); // 회원이름
+                    NoticeDTO rDTO = NoticeDTO.builder()
+                            .noticeSeq(e.getNoticeSeq())
+                            .title(e.getTitle())
+                            .noticeYn(e.getNoticeYn())
+                            .readCnt(e.getReadCnt())
+                            .userId(e.getUserId())
+                            .userName(e.getUserInfo().getUserName())
+                            .build(); // 회원이름
 
                     nList.add(rDTO);
                 }
@@ -183,13 +187,15 @@ public class NoticeJoinService implements INoticeJoinService {
                 .where(ne.noticeSeq.eq(pDTO.noticeSeq())) // Where 조건 정의 : where notice_seq = 10
                 .fetchOne(); // 결과를 리스트 구조로 반환하기
 
-        NoticeDTO rDTO = NoticeDTO.builder().noticeSeq(rEntity.getNoticeSeq())
+        NoticeDTO rDTO = NoticeDTO.builder()
+                .noticeSeq(rEntity.getNoticeSeq())
                 .title(rEntity.getTitle())
                 .noticeYn(rEntity.getNoticeYn())
                 .regDt(rEntity.getRegDt())
                 .userId(rEntity.getUserId())
                 .readCnt(rEntity.getReadCnt())
-                .contents(rEntity.getContents()).build();
+                .contents(rEntity.getContents())
+                .build();
 
         log.info(this.getClass().getName() + ".getNoticeInfoForQueryDSL End!");
 
